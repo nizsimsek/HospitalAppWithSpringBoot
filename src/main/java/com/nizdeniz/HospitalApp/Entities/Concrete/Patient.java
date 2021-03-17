@@ -2,16 +2,17 @@ package com.nizdeniz.HospitalApp.Entities.Concrete;
 
 import com.nizdeniz.HospitalApp.Entities.Abstract.IEntity;
 
-public class Personal implements IEntity {
+import java.sql.Date;
+
+public class Patient implements IEntity {
     private int Id;
     private String Name;
     private String Surname;
     private String NationalId;
-    private int DegreeId;
-    private int StatusId;
-    private String Email;
+    private int FieldId;
     private String PhoneNumber;
-    private String Gender;
+    private Date CreatedDate;
+    private String Email;
 
     public int getId() {
         return Id;
@@ -45,28 +46,12 @@ public class Personal implements IEntity {
         NationalId = nationalId;
     }
 
-    public int getDegreeId() {
-        return DegreeId;
+    public int getFieldId() {
+        return FieldId;
     }
 
-    public void setDegreeId(int degreeId) {
-        DegreeId = degreeId;
-    }
-
-    public int getStatusId() {
-        return StatusId;
-    }
-
-    public void setStatusId(int statusId) {
-        StatusId = statusId;
-    }
-
-    public String getEmail() {
-        return Email;
-    }
-
-    public void setEmail(String email) {
-        Email = email;
+    public void setFieldId(int fieldId) {
+        FieldId = fieldId;
     }
 
     public String getPhoneNumber() {
@@ -77,11 +62,19 @@ public class Personal implements IEntity {
         PhoneNumber = phoneNumber;
     }
 
-    public String getGender() {
-        return Gender;
+    public Date getCreatedDate() {
+        return CreatedDate;
     }
 
-    public void setGender(String gender) {
-        Gender = gender;
+    public void setCreatedDate(Date createdDate) {
+        CreatedDate = createdDate;
+    }
+
+    public String getEmail() {
+        return Email;
+    }
+
+    public void setEmail(String email) {
+        Email = email;
     }
 }
