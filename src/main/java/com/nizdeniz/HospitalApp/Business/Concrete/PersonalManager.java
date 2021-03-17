@@ -1,14 +1,18 @@
 package com.nizdeniz.HospitalApp.Business.Concrete;
 
 import com.nizdeniz.HospitalApp.Business.Abstract.IPersonalService;
-import com.nizdeniz.HospitalApp.DataAccess.Concrete.PersonalDal;
+import com.nizdeniz.HospitalApp.DataAccess.Concrete.DriverManager.PersonalDal;
 import com.nizdeniz.HospitalApp.Entities.Concrete.Personal;
 
 import java.util.List;
 
 public class PersonalManager implements IPersonalService {
 
-    private PersonalDal _personalDal;
+    private final PersonalDal _personalDal;
+
+    public PersonalManager(PersonalDal personalDal) {
+        this._personalDal = personalDal;
+    }
 
     @Override
     public List<Personal> GetAll() {

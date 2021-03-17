@@ -1,13 +1,17 @@
 package com.nizdeniz.HospitalApp.Business.Concrete;
 
 import com.nizdeniz.HospitalApp.Business.Abstract.IDegreeService;
-import com.nizdeniz.HospitalApp.DataAccess.Concrete.DegreeDal;
+import com.nizdeniz.HospitalApp.DataAccess.Concrete.DriverManager.DegreeDal;
 import com.nizdeniz.HospitalApp.Entities.Concrete.Degree;
 
 import java.util.List;
 
 public class DegreeManager implements IDegreeService {
-    private DegreeDal _degreeDal;
+    private final DegreeDal _degreeDal;
+
+    public DegreeManager(DegreeDal degreeDal) {
+        this._degreeDal = degreeDal;
+    }
 
     @Override
     public List<Degree> GetAll() {

@@ -1,7 +1,7 @@
-package com.nizdeniz.HospitalApp.DataAccess.Concrete;
+package com.nizdeniz.HospitalApp.DataAccess.Concrete.DriverManager;
 
+import com.nizdeniz.HospitalApp.Core.DataAccess.DbHelper;
 import com.nizdeniz.HospitalApp.DataAccess.Abstract.IDegreeDal;
-import com.nizdeniz.HospitalApp.Entities.Abstract.IEntity;
 import com.nizdeniz.HospitalApp.Entities.Concrete.Degree;
 
 import java.sql.*;
@@ -9,24 +9,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DegreeDal implements IDegreeDal {
-    private final IEntity _degreeDal;
     private Connection _connection;
 
-    public DegreeDal(IEntity _degreeDal) {
+    public DegreeDal() {
+        DbHelper dbHelper = new DbHelper("jdbc:mysql://localhost:3306/hospitaldb", "root","12345");
         try {
-            _connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/hospitaldb");
-            System.out.println("Veritabanı bağlantısı başarılı");
+            _connection = dbHelper.getConnection();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        this._degreeDal = _degreeDal;
     }
 
     @Override
     public List<Degree> GetAll() {
         List<Degree> degrees = new ArrayList<>();
         try {
-            PreparedStatement ps = _connection.prepareStatement("SELECT * FROM Degree");
+            PreparedStatement ps = _connection.prepareStatement("SELECT * FROM degree");
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Degree degree = new Degree();

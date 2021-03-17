@@ -1,13 +1,17 @@
 package com.nizdeniz.HospitalApp.Business.Concrete;
 
 import com.nizdeniz.HospitalApp.Business.Abstract.IPatientService;
-import com.nizdeniz.HospitalApp.DataAccess.Concrete.PatientDal;
+import com.nizdeniz.HospitalApp.DataAccess.Concrete.DriverManager.PatientDal;
 import com.nizdeniz.HospitalApp.Entities.Concrete.Patient;
 
 import java.util.List;
 
 public class PatientManager implements IPatientService {
-    private PatientDal _patientDal;
+    private final PatientDal _patientDal;
+
+    public PatientManager(PatientDal patientDal) {
+        this._patientDal = patientDal;
+    }
 
     @Override
     public List<Patient> GetAll() {

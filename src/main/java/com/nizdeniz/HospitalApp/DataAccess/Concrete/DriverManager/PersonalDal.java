@@ -1,7 +1,7 @@
-package com.nizdeniz.HospitalApp.DataAccess.Concrete;
+package com.nizdeniz.HospitalApp.DataAccess.Concrete.DriverManager;
 
+import com.nizdeniz.HospitalApp.Core.DataAccess.DbHelper;
 import com.nizdeniz.HospitalApp.DataAccess.Abstract.IPersonalDal;
-import com.nizdeniz.HospitalApp.Entities.Abstract.IEntity;
 import com.nizdeniz.HospitalApp.Entities.Concrete.Personal;
 
 import java.sql.*;
@@ -10,22 +10,20 @@ import java.util.List;
 
 public class PersonalDal implements IPersonalDal {
 
-    private final IEntity _personalDal;
     private Connection _connection;
 
-    public PersonalDal(IEntity _personalDal) {
+    public PersonalDal() {
+        DbHelper dbHelper = new DbHelper("jdbc:mysql://localhost:3306/hospitaldb", "root","12345");
         try {
-            _connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/hospitaldb", "root", "12345");
-            System.out.println("Veritabanı bağlantısı başarılı");
+            _connection = dbHelper.getConnection();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        this._personalDal = _personalDal;
     }
 
     @Override
     public List<Personal> GetAll() {
-        List<Personal> personals = new ArrayList<Personal>();
+        List<Personal> personals = new ArrayList<>();
         try {
             PreparedStatement ps = _connection.prepareStatement("SELECT * FROM Personal");
             ResultSet rs = ps.executeQuery();
@@ -34,7 +32,7 @@ public class PersonalDal implements IPersonalDal {
                 personal.setId(rs.getInt("Id"));
                 personal.setName(rs.getString("Name"));
                 personal.setSurname(rs.getString("Surname"));
-                personal.setNationalId(rs.getInt("NationalId"));
+                personal.setNationalId(rs.getString("NationalId"));
                 personal.setDegreeId(rs.getInt("DegreeId"));
                 personal.setStatusId(rs.getInt("StatusId"));
                 personal.setEmail(rs.getString("Email"));
@@ -51,20 +49,19 @@ public class PersonalDal implements IPersonalDal {
 
     @Override
     public void Add(Personal personal) {
-        PreparedStatement ps = null;
-        int status = 0;
+        PreparedStatement ps;
         try {
             ps = _connection.prepareStatement("INSERT INTO Personal(Name, Surname, NationalId, DegreeId, " +
                     "StatusId, Email, PhoneNumber, Gender) VALUES(?, ?, ?, ?, ?, ?, ?, ?)");
             ps.setString(1, personal.getName());
             ps.setString(2, personal.getSurname());
-            ps.setInt(3, personal.getNationalId());
+            ps.setString(3, personal.getNationalId());
             ps.setInt(4, personal.getDegreeId());
             ps.setInt(5, personal.getStatusId());
             ps.setString(6, personal.getEmail());
             ps.setString(7, personal.getPhoneNumber());
             ps.setString(8, personal.getGender());
-            status = ps.executeUpdate();
+            ps.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -72,22 +69,20 @@ public class PersonalDal implements IPersonalDal {
 
     @Override
     public void Update(Personal personal) {
-        PreparedStatement ps = null;
-        int status = 0;
+        PreparedStatement ps;
         try {
             ps = _connection.prepareStatement("UPDATE Personal SET Name = ?, Surname = ?, NationalId = ?," +
                     " DegreeId = ?, StatusId = ?, Email = ?, PhoneNumber = ?, Gender = ? WHERE Id = ?");
             ps.setString(1, personal.getName());
             ps.setString(2, personal.getSurname());
-            ps.setInt(3, personal.getNationalId());
+            ps.setString(3, personal.getNationalId());
             ps.setInt(4, personal.getDegreeId());
             ps.setInt(5, personal.getStatusId());
             ps.setString(6, personal.getEmail());
             ps.setString(7, personal.getPhoneNumber());
             ps.setString(8, personal.getGender());
             ps.setInt(9, personal.getId());
-            status = ps.executeUpdate();
-
+            ps.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -95,14 +90,11 @@ public class PersonalDal implements IPersonalDal {
 
     @Override
     public void Delete(Personal personal) {
-        PreparedStatement ps = null;
-        int status = 0;
+        PreparedStatement ps;
         try {
             ps = _connection.prepareStatement("DELETE FROM Personal WHERE Id=?");
             ps.setInt(1, personal.getId());
-
-            status = ps.executeUpdate();
-
+            ps.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -110,8 +102,7 @@ public class PersonalDal implements IPersonalDal {
 
     @Override
     public Personal GetById(int id) {
-        PreparedStatement ps = null;
-        int status = 0;
+        PreparedStatement ps;
         try {
             ps = _connection.prepareStatement("SELECT * FROM Personal WHERE Id = ?");
             ps.setInt(1, id);
@@ -120,7 +111,7 @@ public class PersonalDal implements IPersonalDal {
             personal.setId(rs.getInt("Id"));
             personal.setName(rs.getString("Name"));
             personal.setSurname(rs.getString("Surname"));
-            personal.setNationalId(rs.getInt("NationalId"));
+            personal.setNationalId(rs.getString("NationalId"));
             personal.setDegreeId(rs.getInt("DegreeId"));
             personal.setStatusId(rs.getInt("StatusId"));
             personal.setEmail(rs.getString("Email"));

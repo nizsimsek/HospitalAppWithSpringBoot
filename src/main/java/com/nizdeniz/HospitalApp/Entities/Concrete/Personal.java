@@ -6,7 +6,7 @@ public class Personal implements IEntity {
     private int Id;
     private String Name;
     private String Surname;
-    private int NationalId;
+    private String NationalId;
     private int DegreeId;
     private int StatusId;
     private String Email;
@@ -37,11 +37,11 @@ public class Personal implements IEntity {
         Surname = surname;
     }
 
-    public int getNationalId() {
+    public String getNationalId() {
         return NationalId;
     }
 
-    public void setNationalId(int nationalId) {
+    public void setNationalId(String nationalId) {
         NationalId = nationalId;
     }
 

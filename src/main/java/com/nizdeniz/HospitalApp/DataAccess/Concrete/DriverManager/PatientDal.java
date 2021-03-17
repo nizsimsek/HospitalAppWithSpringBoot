@@ -1,7 +1,7 @@
-package com.nizdeniz.HospitalApp.DataAccess.Concrete;
+package com.nizdeniz.HospitalApp.DataAccess.Concrete.DriverManager;
 
+import com.nizdeniz.HospitalApp.Core.DataAccess.DbHelper;
 import com.nizdeniz.HospitalApp.DataAccess.Abstract.IPatientDal;
-import com.nizdeniz.HospitalApp.Entities.Abstract.IEntity;
 import com.nizdeniz.HospitalApp.Entities.Concrete.Patient;
 
 import java.sql.*;
@@ -9,17 +9,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PatientDal implements IPatientDal {
-    private IEntity _patientDal;
     private Connection _connection;
 
-    public PatientDal(IEntity _patientDal) {
+    public PatientDal() {
+        DbHelper dbHelper = new DbHelper("jdbc:mysql://localhost:3306/hospitaldb", "root","12345");
         try {
-            _connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/hospitaldb");
-            System.out.println("Veritabanı bağlantısı başarılı");
+            _connection = dbHelper.getConnection();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        this._patientDal = _patientDal;
     }
 
     @Override
