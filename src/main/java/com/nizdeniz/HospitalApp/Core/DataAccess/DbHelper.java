@@ -25,6 +25,6 @@ public class DbHelper {
     }
 
     public Connection getConnection() throws SQLException {
-        return connection = DriverManager.getConnection(ConnectionString,UserName,password);
+        return connection = DriverManager.getConnection(ConnectionString, UserName, password);
     }
 }

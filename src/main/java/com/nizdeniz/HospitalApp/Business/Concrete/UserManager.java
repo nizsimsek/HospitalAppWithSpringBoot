@@ -1,7 +1,7 @@
 package com.nizdeniz.HospitalApp.Business.Concrete;
 
 import com.nizdeniz.HospitalApp.Business.Abstract.IUserService;
-import com.nizdeniz.HospitalApp.DataAccess.Concrete.UserDal;
+import com.nizdeniz.HospitalApp.DataAccess.Concrete.DriverManager.UserDal;
 import com.nizdeniz.HospitalApp.Entities.Concrete.User;
 
 import java.util.List;
@@ -10,7 +10,7 @@ public class UserManager implements IUserService {
     private final UserDal _userDal;
 
     public UserManager(UserDal userDal) {
-        _userDal = userDal;
+        this._userDal = userDal;
     }
 
     @Override
