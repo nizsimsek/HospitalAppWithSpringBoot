@@ -10,7 +10,7 @@ import java.util.List;
 
 public class PersonalDal implements IPersonalDal {
 
-    private IEntity _personalDal;
+    private final IEntity _personalDal;
     private Connection _connection;
 
     public PersonalDal(IEntity _personalDal) {
