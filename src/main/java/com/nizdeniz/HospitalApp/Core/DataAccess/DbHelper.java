@@ -6,25 +6,11 @@ import java.sql.SQLException;
 
 public class DbHelper {
     public Connection connection = null;
-    public String ConnectionString;
-    public String UserName;
-    public String password;
-
-    public DbHelper(String connectionString) {
-        this.ConnectionString = connectionString;
-    }
-
-    public DbHelper(String connectionString, String UserName) {
-        this(connectionString);
-        this.UserName = UserName;
-    }
-
-    public DbHelper(String connectionString, String userName, String password) {
-        this(connectionString, userName);
-        this.password = password;
-    }
 
     public Connection getConnection() throws SQLException {
-        return connection = DriverManager.getConnection(ConnectionString, UserName, password);
+        String password = "12345";
+        String connectionString = "jdbc:mysql://localhost:3306/hospitaldb";
+        String userName = "root";
+        return connection = DriverManager.getConnection(connectionString, userName, password);
     }
 }

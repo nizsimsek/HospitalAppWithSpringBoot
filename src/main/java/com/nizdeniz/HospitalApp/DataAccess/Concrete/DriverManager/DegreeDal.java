@@ -12,7 +12,7 @@ public class DegreeDal implements IDegreeDal {
     private Connection _connection;
 
     public DegreeDal() {
-        DbHelper dbHelper = new DbHelper("jdbc:mysql://localhost:3306/hospitaldb", "root","12345");
+        DbHelper dbHelper = new DbHelper();
         try {
             _connection = dbHelper.getConnection();
         } catch (SQLException throwables) {
