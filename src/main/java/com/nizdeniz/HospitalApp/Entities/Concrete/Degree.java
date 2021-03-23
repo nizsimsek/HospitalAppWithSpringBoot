@@ -1,6 +1,6 @@
 package com.nizdeniz.HospitalApp.Entities.Concrete;
 
-import com.nizdeniz.HospitalApp.Entities.Abstract.IEntity;
+import com.nizdeniz.HospitalApp.Core.Entities.IEntity;
 
 public class Degree implements IEntity {
     private int Id;
