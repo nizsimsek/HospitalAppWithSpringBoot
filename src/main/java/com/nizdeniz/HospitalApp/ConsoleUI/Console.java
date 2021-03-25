@@ -2,23 +2,18 @@ package com.nizdeniz.HospitalApp.ConsoleUI;
 
 import com.nizdeniz.HospitalApp.Business.Concrete.DegreeManager;
 import com.nizdeniz.HospitalApp.Business.Concrete.PatientManager;
-import com.nizdeniz.HospitalApp.Business.Concrete.PersonalManager;
 import com.nizdeniz.HospitalApp.Business.Concrete.UserManager;
 import com.nizdeniz.HospitalApp.DataAccess.Concrete.DriverManager.DegreeDal;
 import com.nizdeniz.HospitalApp.DataAccess.Concrete.DriverManager.PatientDal;
-import com.nizdeniz.HospitalApp.DataAccess.Concrete.DriverManager.PersonalDal;
 import com.nizdeniz.HospitalApp.DataAccess.Concrete.DriverManager.UserDal;
 import com.nizdeniz.HospitalApp.Entities.Concrete.Degree;
 import com.nizdeniz.HospitalApp.Entities.Concrete.Patient;
-import com.nizdeniz.HospitalApp.Entities.Concrete.Personal;
 import com.nizdeniz.HospitalApp.Entities.Concrete.User;
 
 public class Console {
     public static void main(String[] args) {
-        //TODO: Personal yerine Personnel olarak tüm alanlar güncellenecek.
         DegreeManager degreeManager = new DegreeManager(new DegreeDal());
         PatientManager patientManager = new PatientManager(new PatientDal());
-        PersonalManager personalManager = new PersonalManager(new PersonalDal());
         UserManager userManager = new UserManager(new UserDal());
 
         //DEGREE INFORMATION
@@ -38,20 +33,6 @@ public class Console {
             System.out.println("PatientPhoneNumber : " + patient.getPhoneNumber());
             System.out.println("PatientCreatedDate : " + patient.getCreatedDate());
             System.out.println("PatientEmail : " + patient.getEmail());
-            System.out.println("------------------------------------------");
-        }
-
-        //PERSONNEL INFORMATION
-        for (Personal personal : personalManager.GetAll()) {
-            System.out.println("PersonalId : " + personal.getId());
-            System.out.println("PersonalName : " + personal.getName());
-            System.out.println("PersonalSurname : " + personal.getSurname());
-            System.out.println("PersonalNationalId : " + personal.getNationalId());
-            System.out.println("PersonalDegreeId : " + personal.getDegreeId());
-            System.out.println("PersonalStatusId : " + personal.getStatusId());
-            System.out.println("PersonalEmail : " + personal.getEmail());
-            System.out.println("PersonalPhoneNumber : " + personal.getPhoneNumber());
-            System.out.println("PersonalGender : " + personal.getGender());
             System.out.println("------------------------------------------");
         }
 
