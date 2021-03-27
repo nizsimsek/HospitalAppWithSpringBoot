@@ -2,17 +2,52 @@ package com.nizdeniz.HospitalApp.Entities.Concrete;
 
 import com.nizdeniz.HospitalApp.Core.Entities.IEntity;
 
+import javax.persistence.*;
 import java.sql.Date;
 
+@Entity
+@Table(name = "Patient")
 public class Patient implements IEntity {
+
+    @Id
+    @Column(name = "Id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int Id;
+
+    @Column(name="Name")
     private String Name;
+
+    @Column(name="Surname")
     private String Surname;
+
+    @Column(name="NationalId")
     private String NationalId;
+
+    @Column(name="FieldId")
     private int FieldId;
+
+    @Column(name="PhoneNumber")
     private String PhoneNumber;
+
+    @Column(name="CreatedDate")
     private Date CreatedDate;
+
+    @Column(name="Email")
     private String Email;
+
+    public Patient() {
+    }
+
+    public Patient(int id, String name, String surname, String nationalId, int fieldId, String phoneNumber, Date createdDate, String email) {
+        Id = id;
+        Name = name;
+        Surname = surname;
+        NationalId = nationalId;
+        FieldId = fieldId;
+        PhoneNumber = phoneNumber;
+        CreatedDate = createdDate;
+        Email = email;
+    }
 
     public int getId() {
         return Id;
