@@ -2,12 +2,40 @@ package com.nizdeniz.HospitalApp.Entities.Concrete;
 
 import com.nizdeniz.HospitalApp.Core.Entities.IEntity;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "User")
 public class User implements IEntity {
+
+    @Id
+    @Column(name = "Id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int Id;
+
+    @Column(name = "Email")
     private String Email;
+
+    @Column(name = "PasswordHash")
     private String PasswordHash;
+
+    @Column(name = "PasswordSalt")
     private String PasswordSalt;
+
+    @Column(name = "RoleId")
     private int RoleId;
+
+    public User() {
+
+    }
+
+    public User(int id, String email, String passwordHash, String passwordSalt, int roleId) {
+        Id = id;
+        Email = email;
+        PasswordHash = passwordHash;
+        PasswordSalt = passwordSalt;
+        RoleId = roleId;
+    }
 
     public int getId() {
         return Id;
