@@ -16,8 +16,8 @@ public class UserDal implements IUserDal {
     private final EntityManager _entityManager;
 
     @Autowired
-    public UserDal(EntityManager _entityManager) {
-        this._entityManager = _entityManager;
+    public UserDal(EntityManager entityManager) {
+        _entityManager = entityManager;
     }
 
     @Override
@@ -43,9 +43,9 @@ public class UserDal implements IUserDal {
 
     @Override
     @Transactional
-    public void Delete(User entity) {
+    public void DeleteById(int id) {
         Session session = _entityManager.unwrap(Session.class);
-        User entityToDelete = session.get(User.class, entity.getId());
+        User entityToDelete = session.get(User.class, id);
         session.delete(entityToDelete);
     }
 

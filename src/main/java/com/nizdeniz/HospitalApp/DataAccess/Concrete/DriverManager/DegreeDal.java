@@ -65,15 +65,8 @@ public class DegreeDal implements IDegreeDal {
     }
 
     @Override
-    public void Delete(Degree degree) {
-        PreparedStatement ps;
-        try {
-            ps = _connection.prepareStatement("DELETE FROM Degree WHERE Id = ?");
-            ps.setInt(1, degree.getId());
-            ps.executeQuery();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+    public void DeleteById(int id) {
+
     }
 
     @Override

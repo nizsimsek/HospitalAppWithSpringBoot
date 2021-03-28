@@ -43,9 +43,9 @@ public class FieldDal implements IFieldDal {
 
     @Override
     @Transactional
-    public void Delete(Field entity) {
+    public void DeleteById(int id) {
         Session session = _entityManager.unwrap(Session.class);
-        Field entityToDelete = session.get(Field.class, entity.getId());
+        Field entityToDelete = session.get(Field.class, id);
         session.delete(entityToDelete);
     }
 

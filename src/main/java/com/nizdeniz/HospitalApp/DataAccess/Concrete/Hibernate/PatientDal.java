@@ -16,8 +16,8 @@ public class PatientDal implements IPatientDal {
     private final EntityManager _entityManager;
 
     @Autowired
-    public PatientDal(EntityManager _entityManager) {
-        this._entityManager = _entityManager;
+    public PatientDal(EntityManager entityManager) {
+        _entityManager = entityManager;
     }
 
     @Override
@@ -43,9 +43,9 @@ public class PatientDal implements IPatientDal {
 
     @Override
     @Transactional
-    public void Delete(Patient entity) {
+    public void DeleteById(int id) {
         Session session = _entityManager.unwrap(Session.class);
-        Patient entityToDelete = session.get(Patient.class, entity.getId());
+        Patient entityToDelete = session.get(Patient.class, id);
         session.delete(entityToDelete);
     }
 

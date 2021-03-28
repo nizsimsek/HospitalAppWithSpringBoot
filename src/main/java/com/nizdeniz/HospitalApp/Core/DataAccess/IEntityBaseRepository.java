@@ -9,7 +9,7 @@ public interface IEntityBaseRepository<T> {
 
     void Update(T entity);
 
-    void Delete(T entity);
+    void DeleteById(int id);
 
     T GetById(int id);
 }

@@ -1,6 +1,10 @@
 package com.nizdeniz.HospitalApp.Business.Concrete;
 
 import com.nizdeniz.HospitalApp.Business.Abstract.IPatientService;
+import com.nizdeniz.HospitalApp.Core.Results.IDataResult;
+import com.nizdeniz.HospitalApp.Core.Results.IResult;
+import com.nizdeniz.HospitalApp.Core.Results.SuccessDataResult;
+import com.nizdeniz.HospitalApp.Core.Results.SuccessResult;
 import com.nizdeniz.HospitalApp.DataAccess.Concrete.Hibernate.PatientDal;
 import com.nizdeniz.HospitalApp.Entities.Concrete.Patient;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,36 +20,39 @@ public class PatientManager implements IPatientService {
 
     @Autowired
     public PatientManager(PatientDal patientDal) {
-        this._patientDal = patientDal;
+        _patientDal = patientDal;
     }
 
     @Override
     @Transactional
-    public List<Patient> GetAll() {
-        return _patientDal.GetAll();
+    public IDataResult<List<Patient>> GetAll() {
+        return new SuccessDataResult<>(_patientDal.GetAll());
     }
 
     @Override
     @Transactional
-    public void Add(Patient patient) {
+    public IResult Add(Patient patient) {
         _patientDal.Add(patient);
+        return new SuccessResult();
     }
 
     @Override
     @Transactional
-    public void Update(Patient patient) {
+    public IResult Update(Patient patient) {
         _patientDal.Update(patient);
+        return new SuccessResult();
     }
 
     @Override
     @Transactional
-    public void Delete(Patient patient) {
-        _patientDal.Delete(patient);
+    public IResult DeleteById(int id) {
+        _patientDal.DeleteById(id);
+        return new SuccessResult();
     }
 
     @Override
     @Transactional
-    public Patient GetById(int id) {
-        return _patientDal.GetById(id);
+    public IDataResult<Patient> GetById(int id) {
+        return new SuccessDataResult<>(_patientDal.GetById(id));
     }
 }

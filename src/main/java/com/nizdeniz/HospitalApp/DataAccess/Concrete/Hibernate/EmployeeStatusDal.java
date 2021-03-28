@@ -16,15 +16,15 @@ public class EmployeeStatusDal implements IEmployeeStatusDal {
     private final EntityManager _entityManager;
 
     @Autowired
-    public EmployeeStatusDal(EntityManager _entityManager) {
-        this._entityManager = _entityManager;
+    public EmployeeStatusDal(EntityManager entityManager) {
+        _entityManager = entityManager;
     }
 
     @Override
     @Transactional
     public List<EmployeeStatus> GetAll() {
         Session session = _entityManager.unwrap(Session.class);
-        return _entityManager.createQuery("FROM Employee_Status", EmployeeStatus.class).getResultList();
+        return session.createQuery("FROM EmployeeStatus", EmployeeStatus.class).getResultList();
     }
 
     @Override
@@ -43,9 +43,9 @@ public class EmployeeStatusDal implements IEmployeeStatusDal {
 
     @Override
     @Transactional
-    public void Delete(EmployeeStatus entity) {
+    public void DeleteById(int id) {
         Session session = _entityManager.unwrap(Session.class);
-        EmployeeStatus entityToDelete = session.get(EmployeeStatus.class, entity.getId());
+        EmployeeStatus entityToDelete = session.get(EmployeeStatus.class, id);
         session.delete(entityToDelete);
     }
 

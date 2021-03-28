@@ -69,15 +69,8 @@ public class FieldDal implements IFieldDal {
     }
 
     @Override
-    public void Delete(Field entity) {
-        PreparedStatement ps;
-        try {
-            ps = _connection.prepareStatement("DELETE FROM Field WHERE Id = ?");
-            ps.setInt(1, entity.getId());
-            ps.executeQuery();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+    public void DeleteById(int id) {
+
     }
 
     @Override

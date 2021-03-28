@@ -8,8 +8,12 @@ import java.util.List;
 
 public interface IFieldService {
     IDataResult<List<Field>> GetAll();
+
     IResult Add(Field field);
+
     IResult Update(Field field);
-    IResult Delete(Field field);
+
+    IResult DeleteById(int id);
+
     IDataResult<Field> GetById(int id);
 }

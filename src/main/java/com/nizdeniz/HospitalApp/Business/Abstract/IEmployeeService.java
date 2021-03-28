@@ -13,7 +13,7 @@ public interface IEmployeeService {
 
     IResult Update(Employee employee);
 
-    IResult Delete(Employee employee);
+    IResult DeleteById(int id);
 
     IDataResult<Employee> GetById(int id);
 }
