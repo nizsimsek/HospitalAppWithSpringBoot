@@ -1,17 +1,19 @@
 package com.nizdeniz.HospitalApp.Business.Abstract;
 
+import com.nizdeniz.HospitalApp.Core.Results.IDataResult;
+import com.nizdeniz.HospitalApp.Core.Results.IResult;
 import com.nizdeniz.HospitalApp.Entities.Concrete.User;
 
 import java.util.List;
 
 public interface IUserService {
-    List<User> GetAll();
+    IDataResult<List<User>> GetAll();
 
-    void Add(User user);
+    IResult Add(User user);
 
-    void Update(User user);
+    IResult Update(User user);
 
-    void Delete(User user);
+    IResult DeleteById(int id);
 
-    User GetById(int id);
+    IDataResult<User> GetById(int id);
 }

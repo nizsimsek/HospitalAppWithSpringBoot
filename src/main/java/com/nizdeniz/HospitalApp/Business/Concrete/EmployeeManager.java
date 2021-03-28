@@ -19,8 +19,8 @@ public class EmployeeManager implements IEmployeeService {
     private final EmployeeDal _employeeDal;
 
     @Autowired
-    public EmployeeManager(EmployeeDal _employeeDal) {
-        this._employeeDal = _employeeDal;
+    public EmployeeManager(EmployeeDal employeeDal) {
+        _employeeDal = employeeDal;
     }
 
     @Override
@@ -45,8 +45,8 @@ public class EmployeeManager implements IEmployeeService {
 
     @Override
     @Transactional
-    public IResult Delete(Employee employee) {
-        _employeeDal.Delete(employee);
+    public IResult DeleteById(int id) {
+        _employeeDal.DeleteById(id);
         return new SuccessResult();
     }
 

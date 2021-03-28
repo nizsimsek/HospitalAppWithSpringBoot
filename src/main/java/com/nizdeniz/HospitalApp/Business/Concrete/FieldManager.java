@@ -23,7 +23,6 @@ public class FieldManager implements IFieldService {
         _fieldDal = fieldDal;
     }
 
-
     @Override
     @Transactional
     public IDataResult<List<Field>> GetAll() {
@@ -46,8 +45,8 @@ public class FieldManager implements IFieldService {
 
     @Override
     @Transactional
-    public IResult Delete(Field field) {
-        _fieldDal.Delete(field);
+    public IResult DeleteById(int id) {
+        _fieldDal.DeleteById(id);
         return new SuccessResult();
     }
 

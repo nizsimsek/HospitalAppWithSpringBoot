@@ -1,17 +1,19 @@
 package com.nizdeniz.HospitalApp.Business.Abstract;
 
+import com.nizdeniz.HospitalApp.Core.Results.IDataResult;
+import com.nizdeniz.HospitalApp.Core.Results.IResult;
 import com.nizdeniz.HospitalApp.Entities.Concrete.Degree;
 
 import java.util.List;
 
 public interface IDegreeService {
-    List<Degree> GetAll();
+    IDataResult<List<Degree>> GetAll();
 
-    void Add(Degree degree);
+    IResult Add(Degree degree);
 
-    void Update(Degree degree);
+    IResult Update(Degree degree);
 
-    void Delete(Degree degree);
+    IResult DeleteById(int id);
 
-    Degree GetById(int id);
+    IDataResult<Degree> GetById(int id);
 }

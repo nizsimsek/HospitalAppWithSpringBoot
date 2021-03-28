@@ -19,10 +19,9 @@ public class EmployeeStatusManager implements IEmployeeStatusService {
     private final EmployeeStatusDal _employeeStatusDal;
 
     @Autowired
-    public EmployeeStatusManager(EmployeeStatusDal _employeeStatusDal) {
-        this._employeeStatusDal = _employeeStatusDal;
+    public EmployeeStatusManager(EmployeeStatusDal employeeStatusDal) {
+        _employeeStatusDal = employeeStatusDal;
     }
-
 
     @Override
     @Transactional
@@ -46,8 +45,8 @@ public class EmployeeStatusManager implements IEmployeeStatusService {
 
     @Override
     @Transactional
-    public IResult Delete(EmployeeStatus employeeStatus) {
-        _employeeStatusDal.Delete(employeeStatus);
+    public IResult DeleteById(int id) {
+        _employeeStatusDal.DeleteById(id);
         return new SuccessResult();
     }
 

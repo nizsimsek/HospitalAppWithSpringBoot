@@ -85,15 +85,8 @@ public class PatientDal implements IPatientDal {
     }
 
     @Override
-    public void Delete(Patient patient) {
-        PreparedStatement ps;
-        try {
-            ps = _connection.prepareStatement("DELETE FROM Patient WHERE Id = ?");
-            ps.setInt(1, patient.getId());
-            ps.executeUpdate();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+    public void DeleteById(int id) {
+
     }
 
     @Override

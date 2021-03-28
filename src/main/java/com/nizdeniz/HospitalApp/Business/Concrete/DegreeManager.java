@@ -1,6 +1,10 @@
 package com.nizdeniz.HospitalApp.Business.Concrete;
 
 import com.nizdeniz.HospitalApp.Business.Abstract.IDegreeService;
+import com.nizdeniz.HospitalApp.Core.Results.IDataResult;
+import com.nizdeniz.HospitalApp.Core.Results.IResult;
+import com.nizdeniz.HospitalApp.Core.Results.SuccessDataResult;
+import com.nizdeniz.HospitalApp.Core.Results.SuccessResult;
 import com.nizdeniz.HospitalApp.DataAccess.Concrete.Hibernate.DegreeDal;
 import com.nizdeniz.HospitalApp.Entities.Concrete.Degree;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,36 +20,39 @@ public class DegreeManager implements IDegreeService {
 
     @Autowired
     public DegreeManager(DegreeDal degreeDal) {
-        this._degreeDal = degreeDal;
+        _degreeDal = degreeDal;
     }
 
     @Override
     @Transactional
-    public List<Degree> GetAll() {
-        return _degreeDal.GetAll();
+    public IDataResult<List<Degree>> GetAll() {
+        return new SuccessDataResult<>(_degreeDal.GetAll());
     }
 
     @Override
     @Transactional
-    public void Add(Degree degree) {
+    public IResult Add(Degree degree) {
         _degreeDal.Add(degree);
+        return new SuccessResult();
     }
 
     @Override
     @Transactional
-    public void Update(Degree degree) {
+    public IResult Update(Degree degree) {
         _degreeDal.Update(degree);
+        return new SuccessResult();
     }
 
     @Override
     @Transactional
-    public void Delete(Degree degree) {
-        _degreeDal.Delete(degree);
+    public IResult DeleteById(int id) {
+        _degreeDal.DeleteById(id);
+        return new SuccessResult();
     }
 
     @Override
     @Transactional
-    public Degree GetById(int id) {
-        return _degreeDal.GetById(id);
+    public IDataResult<Degree> GetById(int id) {
+        return new SuccessDataResult<>(_degreeDal.GetById(id));
     }
 }

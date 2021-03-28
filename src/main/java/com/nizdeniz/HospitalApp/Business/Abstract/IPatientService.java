@@ -1,17 +1,19 @@
 package com.nizdeniz.HospitalApp.Business.Abstract;
 
+import com.nizdeniz.HospitalApp.Core.Results.IDataResult;
+import com.nizdeniz.HospitalApp.Core.Results.IResult;
 import com.nizdeniz.HospitalApp.Entities.Concrete.Patient;
 
 import java.util.List;
 
 public interface IPatientService {
-    List<Patient> GetAll();
+    IDataResult<List<Patient>> GetAll();
 
-    void Add(Patient patient);
+    IResult Add(Patient patient);
 
-    void Update(Patient patient);
+    IResult Update(Patient patient);
 
-    void Delete(Patient patient);
+    IResult DeleteById(int id);
 
-    Patient GetById(int id);
+    IDataResult<Patient> GetById(int id);
 }

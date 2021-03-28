@@ -75,15 +75,8 @@ public class UserDal implements IUserDal {
     }
 
     @Override
-    public void Delete(User user) {
-        PreparedStatement ps;
-        try {
-            ps = _connection.prepareStatement("DELETE FROM User WHERE Id = ?");
-            ps.setInt(1, user.getId());
-            ps.executeUpdate();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+    public void DeleteById(int id) {
+
     }
 
     @Override

@@ -16,8 +16,8 @@ public class DegreeDal implements IDegreeDal {
     private final EntityManager _entityManager;
 
     @Autowired
-    public DegreeDal(EntityManager _entityManager) {
-        this._entityManager = _entityManager;
+    public DegreeDal(EntityManager entityManager) {
+        _entityManager = entityManager;
     }
 
     @Override
@@ -43,9 +43,9 @@ public class DegreeDal implements IDegreeDal {
 
     @Override
     @Transactional
-    public void Delete(Degree entity) {
+    public void DeleteById(int id) {
         Session session = _entityManager.unwrap(Session.class);
-        Degree entityToDelete = session.get(Degree.class, entity.getId());
+        Degree entityToDelete = session.get(Degree.class, id);
         session.delete(entityToDelete);
     }
 

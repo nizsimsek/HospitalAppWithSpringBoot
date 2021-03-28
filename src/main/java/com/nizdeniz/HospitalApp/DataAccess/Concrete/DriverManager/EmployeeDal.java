@@ -91,15 +91,8 @@ public class EmployeeDal implements IEmployeeDal {
     }
 
     @Override
-    public void Delete(Employee employee) {
-        PreparedStatement ps;
-        try {
-            ps = _connection.prepareStatement("DELETE FROM Employee WHERE Id=?");
-            ps.setInt(1, employee.getId());
-            ps.executeUpdate();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+    public void DeleteById(int id) {
+
     }
 
     @Override

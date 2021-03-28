@@ -43,9 +43,9 @@ public class EmployeeDal implements IEmployeeDal {
 
     @Override
     @Transactional
-    public void Delete(Employee entity) {
+    public void DeleteById(int id) {
         Session session = _entityManager.unwrap(Session.class);
-        Employee entityToDelete = session.get(Employee.class, entity.getId());
+        Employee entityToDelete = session.get(Employee.class, id);
         session.delete(entityToDelete);
     }
 
